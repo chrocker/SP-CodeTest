@@ -9,7 +9,7 @@
     <script>
       var clinicalTrials = angular.module('clinicalTrials',['angularUtils.directives.dirPagination']);
       clinicalTrials.controller('ClinicalCtrl', function ($scope, $http){
-        $http.get('http://api.lillycoi.com/v1/trials?limit=100').success(function(data) {
+        $http.get('trials.json').success(function(data) {
           $scope.trials = data;
         });
       });
