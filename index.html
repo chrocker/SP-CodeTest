@@ -5,11 +5,11 @@
     <title>Clinical Trials</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-	<script src="../dirPagination.js"></script>
+	<script src="dirPagination.js"></script>
     <script>
       var clinicalTrials = angular.module('clinicalTrials',['angularUtils.directives.dirPagination']);
       clinicalTrials.controller('ClinicalCtrl', function ($scope, $http){
-        $http.get('trials.json').success(function(data) {
+        $http.get('http://api.lillycoi.com/v1/trials?limit=100').success(function(data) {
           $scope.trials = data;
         });
       });
