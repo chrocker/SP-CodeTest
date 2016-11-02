@@ -2,10 +2,13 @@
   <head>
     <meta charset="utf-8">
     <title>Clinical Trials</title>
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"> 
+  </head>
+  <body>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<script src="dirPagination.js"></script>
-        <script>
+	 
+	<script>
       		var clinicalTrials = angular.module('clinicalTrials',['angularUtils.directives.dirPagination']);
       		clinicalTrials.controller('ClinicalCtrl', function ($scope, $http){
         	$http.get('https://api.lillycoi.com/v1/trials?limit=100').success(function(data) {
@@ -13,10 +16,7 @@
         		});
       		});
         </script>  
-      
-  </head>
-	
-  <body ng-controller="ClinicalCtrl">
+  <div ng-controller="ClinicalCtrl">
 	<h2>Clinical Trials</h2>
 	<!--Search functionality to filter through data and set an ng-model on it to be accessed later-->
 	<center><form class="form-inline">
@@ -46,5 +46,6 @@
        direction-links="true"
        boundary-links="true" >
     </dir-pagination-controls></center>
+    </div>
   </body>
 </html>
