@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="clinicalTrials">
+  <head>
+    <meta charset="utf-8">
+    <title>Clinical Trials</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<script src="dirPagination.js"></script>
+    <script>
+      var clinicalTrials = angular.module('clinicalTrials',['angularUtils.directives.dirPagination']);
+      clinicalTrials.controller('ClinicalCtrl', function ($scope, $http){
+        $http.get('http://api.lillycoi.com/v1/trials?limit=100').success(function(data) {
+          $scope.trials = data;
+        });
+      });
+    </script>
+  </head>
+  <body ng-controller="ClinicalCtrl">
+	<h2>Clinical Trials</h2>
+	<!--Search functionality to filter through data and set an ng-model on it to be accessed later-->
+	<center><form class="form-inline">
+        <div class="form-group">
+				<input type="text" ng-model="search" class="form-control" placeholder="Search">
+        </div>
+    </form></center>
+    <table>
+      <tr>
+        <th>Brief Title</th>
+		<th>Lead Sponsor</th>
+        <th>Completion Date</th>
+      </tr>
+	  <!--pass through the paginate directive used to set up the 
+	  controls for splitting up the data between pages and pass through 
+	  the file of trials through array results. Add the model search and set 
+	  the amount of items shown to the user per page. -->
+      <tr dir-paginate="trial in trials.results | filter:search | itemsPerPage:10">
+        <td>{{trial.brief_title}}</td>
+		<td>{{trial.lead_sponsor}}</td>
+        <td>{{trial.completion_date}}</td>
+      </tr>
+    </table>
+	<!-- sets the actual controls "<< 1 2 3.... >>" -->
+	<center><dir-pagination-controls
+       max-size="10"
+       direction-links="true"
+       boundary-links="true" >
+    </dir-pagination-controls></center>
+  </body>
+</html>

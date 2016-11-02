@@ -1,0 +1,14 @@
+
+    JQuery - 1
+    Python - 3
+    PHP - 3
+    Scala - 4
+    Clojure - 4
+    Haskell - 4
+    Golang - 4
+    Node.js - 4
+    Ruby - 4
+    Perl - 4
+    Java - 1
+    Angular - 3
+    Chef - 4
