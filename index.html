@@ -6,7 +6,7 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<script src="dirPagination.js"></script>
         <script>
-      		var clinicalTrials = angular.module('clinicalTrials',['angularUtils.directives.dirPagination']);
+      		var clinicalTrials = angular.module('clinicalTrials',[],['angularUtils.directives.dirPagination']);
       		clinicalTrials.controller('ClinicalCtrl', function ($scope, $http){
         	$http.get('https://api.lillycoi.com/v1/trials?limit=100').success(function(data) {
           		$scope.trials = data;
